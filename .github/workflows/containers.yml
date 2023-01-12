@@ -21,5 +21,5 @@ jobs:
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
 
       - name: Publish Containers
-        run: ./.github/scripts/publish_containers.sh
+        run: ./.github/scripts/publish_containers.sh ((github.ref == 'refs/heads/master' && startsWith(github.event.head_commit.message, 'release:')))
         shell: bash
