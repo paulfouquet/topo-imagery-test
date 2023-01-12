@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/paulfouquet/topo-imagery-test/compare/v0.2.1...v0.3.0) (2023-01-12)
+
+
+### Features
+
+* test ([8271ada](https://github.com/paulfouquet/topo-imagery-test/commit/8271ada9eaa74d299ec509206bd0614ec50f878f))
+
 ## [0.2.1](https://github.com/paulfouquet/topo-imagery-test/compare/v0.2.0...v0.2.1) (2023-01-12)
 
 
