@@ -1,6 +1,6 @@
 #!/bin/bash
 
-GIT_VERSION=$(git describe --tags --always --match 'v*')
+GIT_VERSION="v.0.4.0"
 XYZ_VERSION=${GIT_VERSION%-*-*}
 XY_VERSION=${XYZ_VERSION%.*}
 X_VERSION=${XY_VERSION%.*}
