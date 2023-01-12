@@ -6,7 +6,7 @@ if [ $1 == true ]; then
   XYZ_VERSION=${GIT_VERSION%-*-*}
   XY_VERSION=${XYZ_VERSION%.*}
   X_VERSION=${XY_VERSION%.*}
-  versions+=(${X_VERSION}, ${XY_VERSION}, ${XYZ_VERSION})
+  versions+=(${X_VERSION} ${XY_VERSION} ${XYZ_VERSION})
 fi
 versions+=(${GIT_VERSION})
 

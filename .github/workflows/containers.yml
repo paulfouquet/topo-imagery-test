@@ -20,6 +20,12 @@ jobs:
       - name: Log in to registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
 
-      - name: Publish Containers
-        run: ./.github/scripts/publish_containers.sh ((github.ref == 'refs/heads/master' && startsWith(github.event.head_commit.message, 'release:')))
+      - if: github.ref == 'refs/heads/master' && startsWith(github.event.head_commit.message, 'release:')
+        name: Publish Containers for Release
+        run: ./.github/scripts/publish_containers.sh true
+        shell: bash
+
+      - if: ${{!(github.ref == 'refs/heads/master' && startsWith(github.event.head_commit.message, 'release:'))}}
+        name: Publish Containers
+        run: ./.github/scripts/publish_containers.sh false
         shell: bash
