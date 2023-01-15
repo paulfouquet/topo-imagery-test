@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.1](https://github.com/paulfouquet/topo-imagery-test/compare/v0.3.0...v0.3.1) (2023-01-15)
+
+
+### Bug Fixes
+
+* changelog formatting fails ([54d0d78](https://github.com/paulfouquet/topo-imagery-test/commit/54d0d788fae8eefeebbdff96f0560132c5dc83a2))
+* ci release commit msg condition ([4a29bc3](https://github.com/paulfouquet/topo-imagery-test/commit/4a29bc3cdb04f67a02bf078a80feb4887e3f5755))
+
 ## [0.3.0](https://github.com/paulfouquet/topo-imagery-test/compare/v0.2.1...v0.3.0) (2023-01-15)
 
 ### Features
