@@ -25,10 +25,9 @@ jobs:
         run: ./.github/scripts/publish_containers.sh true
         shell: bash
 
-      - if: ${{!(github.ref == 'refs/heads/master' && startsWith(github.event.head_commit.message, 'release:'))}}
+      - if: ${{!(github.ref == 'refs/heads/master' && contains(github.event.head_commit.message, 'release:')}}
         name: Publish Containers
         run: |
-          echo "${{ github.ref }}"
-          echo "${{ github.event.head_commit.message }}"
+          echo ${{!(github.ref == 'refs/heads/master' && contains(github.event.head_commit.message, 'release:')}}
           ./.github/scripts/publish_containers.sh false
         shell: bash
