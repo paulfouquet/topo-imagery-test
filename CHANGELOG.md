@@ -2,21 +2,19 @@
 
 ## [0.3.0](https://github.com/paulfouquet/topo-imagery-test/compare/v0.2.1...v0.3.0) (2023-01-15)
 
-
 ### Features
 
-* simple change ([38bc396](https://github.com/paulfouquet/topo-imagery-test/commit/38bc396b8cf7ccc1bc639d420b23f9bf8640c137))
-* simple change ([38bc396](https://github.com/paulfouquet/topo-imagery-test/commit/38bc396b8cf7ccc1bc639d420b23f9bf8640c137))
-* simple change ([7843e46](https://github.com/paulfouquet/topo-imagery-test/commit/7843e465f7e4db4744a69a87e0e90b0f4a670d9c))
-* simple feat ([cc49983](https://github.com/paulfouquet/topo-imagery-test/commit/cc4998373c5e855b1181e146f9f4408a6a4786ec))
-* test ([8271ada](https://github.com/paulfouquet/topo-imagery-test/commit/8271ada9eaa74d299ec509206bd0614ec50f878f))
-* test the release ([7a58dac](https://github.com/paulfouquet/topo-imagery-test/commit/7a58dac11513bf536d69c7c5dfc8aed703902a5e))
-
+- simple change ([38bc396](https://github.com/paulfouquet/topo-imagery-test/commit/38bc396b8cf7ccc1bc639d420b23f9bf8640c137))
+- simple change ([38bc396](https://github.com/paulfouquet/topo-imagery-test/commit/38bc396b8cf7ccc1bc639d420b23f9bf8640c137))
+- simple change ([7843e46](https://github.com/paulfouquet/topo-imagery-test/commit/7843e465f7e4db4744a69a87e0e90b0f4a670d9c))
+- simple feat ([cc49983](https://github.com/paulfouquet/topo-imagery-test/commit/cc4998373c5e855b1181e146f9f4408a6a4786ec))
+- test ([8271ada](https://github.com/paulfouquet/topo-imagery-test/commit/8271ada9eaa74d299ec509206bd0614ec50f878f))
+- test the release ([7a58dac](https://github.com/paulfouquet/topo-imagery-test/commit/7a58dac11513bf536d69c7c5dfc8aed703902a5e))
 
 ### Bug Fixes
 
-* CHANGELOG formatting fails prettier ([cd93709](https://github.com/paulfouquet/topo-imagery-test/commit/cd93709da7d02c937d72e0efcaac18bf7609ae11))
-* README formatting prettier fails ([71328ed](https://github.com/paulfouquet/topo-imagery-test/commit/71328edd2a8b36af57c639e403ce41c840d06792))
+- CHANGELOG formatting fails prettier ([cd93709](https://github.com/paulfouquet/topo-imagery-test/commit/cd93709da7d02c937d72e0efcaac18bf7609ae11))
+- README formatting prettier fails ([71328ed](https://github.com/paulfouquet/topo-imagery-test/commit/71328edd2a8b36af57c639e403ce41c840d06792))
 
 ## [0.3.0](https://github.com/paulfouquet/topo-imagery-test/compare/v0.2.1...v0.3.0) (2023-01-12)
 
