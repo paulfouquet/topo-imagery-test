@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.0](https://github.com/paulfouquet/topo-imagery-test/compare/v0.6.0...v0.7.0) (2023-01-17)
+
+
+### Features
+
+* tag order ([0699a91](https://github.com/paulfouquet/topo-imagery-test/commit/0699a91bba7ce098a7fe42c36e9fe511dee74f9b))
+
 ## [0.6.0](https://github.com/paulfouquet/topo-imagery-test/compare/v0.5.0...v0.6.0) (2023-01-17)
 
 
