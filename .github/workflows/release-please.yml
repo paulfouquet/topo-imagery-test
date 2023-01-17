@@ -38,10 +38,10 @@ jobs:
           GIT_VERSION_MAJOR=$(echo $GIT_VERSION | cut -d. -f1)
           GIT_VERSION_MAJOR_MINOR=$(echo $GIT_VERSION | cut -d. -f1,2)
           docker tag topo-imagery-test ghcr.io/paulfouquet/topo-imagery-test:latest
-          docker tag topo-imagery-test ghcr.io/paulfouquet/topo-imagery-test:${GIT_VERSION}
-          docker tag topo-imagery-test ghcr.io/paulfouquet/topo-imagery-test:${GIT_VERSION_MAJOR}
           docker tag topo-imagery-test ghcr.io/paulfouquet/topo-imagery-test:${GIT_VERSION_MAJOR_MINOR}
+          docker tag topo-imagery-test ghcr.io/paulfouquet/topo-imagery-test:${GIT_VERSION_MAJOR}
+          docker tag topo-imagery-test ghcr.io/paulfouquet/topo-imagery-test:${GIT_VERSION}
           docker push ghcr.io/paulfouquet/topo-imagery-test:latest
-          docker push ghcr.io/paulfouquet/topo-imagery-test:${GIT_VERSION}
-          docker push ghcr.io/paulfouquet/topo-imagery-test:${GIT_VERSION_MAJOR}
           docker push ghcr.io/paulfouquet/topo-imagery-test:${GIT_VERSION_MAJOR_MINOR}
+          docker push ghcr.io/paulfouquet/topo-imagery-test:${GIT_VERSION_MAJOR}
+          docker push ghcr.io/paulfouquet/topo-imagery-test:${GIT_VERSION}
