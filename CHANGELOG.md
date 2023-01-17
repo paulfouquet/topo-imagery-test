@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.8.0](https://github.com/paulfouquet/topo-imagery-test/compare/v0.7.0...v0.8.0) (2023-01-17)
+
+
+### Features
+
+* test not tag twice ([f74bff7](https://github.com/paulfouquet/topo-imagery-test/commit/f74bff77ce21b881de99994f282e0dbfb0555e69))
+
+
+### Bug Fixes
+
+* formatting ([4a1b699](https://github.com/paulfouquet/topo-imagery-test/commit/4a1b699d0db91c1eb77db5de00d4968b1a443c59))
+* formatting ([c18ae70](https://github.com/paulfouquet/topo-imagery-test/commit/c18ae70d2ab6b1694644d1ddb15b6fa2e262ce69))
+
 ## [0.7.0](https://github.com/paulfouquet/topo-imagery-test/compare/v0.6.0...v0.7.0) (2023-01-17)
 
 
