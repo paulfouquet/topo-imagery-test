@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.11.0](https://github.com/paulfouquet/topo-imagery-test/compare/v0.10.0...v0.11.0) (2023-01-25)
+
+
+### Features
+
+* test publish ([4f1d463](https://github.com/paulfouquet/topo-imagery-test/commit/4f1d463f91a2cb1a8e157fe6d061cb600d753bb6))
+
+
+### Bug Fixes
+
+* formatting ([3fc2c37](https://github.com/paulfouquet/topo-imagery-test/commit/3fc2c378c79bd9ed12fa31a89fc119fcf436953d))
+
 ## [0.10.0](https://github.com/paulfouquet/topo-imagery-test/compare/v0.9.0...v0.10.0) (2023-01-17)
 
 
