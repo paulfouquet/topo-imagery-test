@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.17.0](https://github.com/paulfouquet/topo-imagery-test/compare/v0.16.0...v0.17.0) (2023-01-27)
+
+
+### Features
+
+* new container ([ed4c575](https://github.com/paulfouquet/topo-imagery-test/commit/ed4c575107d4bbaa7d7774c7616d8ccec910ae37))
+
 ## [0.16.0](https://github.com/paulfouquet/topo-imagery-test/compare/v0.15.0...v0.16.0) (2023-01-26)
 
 
