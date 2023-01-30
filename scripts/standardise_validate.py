@@ -47,32 +47,25 @@ def main() -> None:
         file.set_scale(int(arguments.scale))
 
         # Validate the file
-        if not file.validate():
-            get_log().info(
-                "non_visual_qa_errors",
-                originalPath=file.get_path_original(),
-                errors=file.get_errors(),
+        file.validate()
+        original_path = file.get_path_original()
+        standardised_path = file.get_path_standardised()
+        env_argo_template = os.environ.get("ARGO_TEMPLATE")
+        if env_argo_template:
+            argo_template = json.loads(env_argo_template)
+            s3_information = argo_template["archiveLocation"]["s3"]
+            standardised_path = os.path.join(
+                "/vsis3", s3_information["bucket"], s3_information["key"], file.get_path_standardised()
             )
-            original_path = file.get_path_original()
-            standardised_path = file.get_path_standardised()
-            env_argo_template = os.environ.get("ARGO_TEMPLATE")
-            if env_argo_template:
-                argo_template = json.loads(env_argo_template)
-                s3_information = argo_template["archiveLocation"]["s3"]
-                standardised_path = os.path.join(
-                    "/vsis3", s3_information["bucket"], s3_information["key"], file.get_path_standardised()
-                )
-                original_path = os.path.join(
-                    "/vsis3", s3_information["bucket"], s3_information["key"], file.get_path_original()
-                )
-            get_log().info(
-                "non_visual_qa_errors",
-                originalPath=original_path,
-                standardisedPath=standardised_path,
-                errors=file.get_errors(),
+            original_path = os.path.join(
+                "/vsis3", s3_information["bucket"], s3_information["key"], file.get_path_original()
             )
-        else:
-            get_log().info("non_visual_qa_passed", path=file.get_path_original())
+        get_log().info(
+            "non_visual_qa_errors",
+            originalPath=original_path,
+            standardisedPath=standardised_path,
+            errors=file.get_errors(),
+        )
 
         # Create STAC
         item = create_item(
