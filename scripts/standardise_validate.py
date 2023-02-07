@@ -6,6 +6,7 @@ from linz_logger import get_log
 
 from scripts.cli.cli_helper import format_date, format_source, is_argo, valid_date
 from scripts.create_stac import create_item
+from scripts.files.files_helper import get_file_name_from_path
 from scripts.files.fs import write
 from scripts.gdal.gdal_helper import get_srs
 from scripts.standardising import run_standardising
@@ -60,10 +61,16 @@ def main() -> None:
                 argo_template = json.loads(env_argo_template)
                 s3_information = argo_template["archiveLocation"]["s3"]
                 standardised_path = os.path.join(
-                    "/vsis3", s3_information["bucket"], s3_information["key"], file.get_path_standardised()
+                    "/vsis3",
+                    s3_information["bucket"],
+                    s3_information["key"],
+                    get_file_name_from_path(file.get_path_standardised()),
                 )
                 original_path = os.path.join(
-                    "/vsis3", s3_information["bucket"], s3_information["key"], file.get_path_original()
+                    "/vsis3",
+                    s3_information["bucket"],
+                    s3_information["key"],
+                    get_file_name_from_path(file.get_path_original()),
                 )
             get_log().info(
                 "non_visual_qa_errors",
