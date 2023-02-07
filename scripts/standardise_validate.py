@@ -63,7 +63,7 @@ def main() -> None:
                     "/vsis3",
                     s3_information["bucket"],
                     s3_information["key"],
-                    file.get_path_standardised(),
+                    *file.get_path_standardised().split("/"),
                 )
                 original_path = get_vfs_path(file.get_path_original())
             get_log().info(
