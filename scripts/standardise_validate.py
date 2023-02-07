@@ -50,6 +50,11 @@ def main() -> None:
         if not file.validate():
             original_path = file.get_path_original()
             standardised_path = file.get_path_standardised()
+            get_log().info(
+                "TEST",
+                originalPath=original_path,
+                standardisedPath=standardised_path,
+            )
             env_argo_template = os.environ.get("ARGO_TEMPLATE")
             if env_argo_template:
                 argo_template = json.loads(env_argo_template)
