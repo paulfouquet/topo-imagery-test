@@ -34,8 +34,10 @@ class ImageryCollection:
         if providers:
             linz = next((p for p in providers if p["name"] == "Toitū Te Whenua Land Information New Zealand"), None)
             if linz:
+                print("FOUND IT")
                 linz["roles"].extend([ProviderRole.HOST, ProviderRole.PROCESSOR])
                 has_linz = True
+            print("NOT FOUND")
         else:
             providers = []
 
