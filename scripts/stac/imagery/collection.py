@@ -27,10 +27,7 @@ class ImageryCollection:
             "license": "CC-BY-4.0",
             "links": [{"rel": "self", "href": "./collection.json", "type": "application/json"}],
             "providers": [
-                {
-                    "name": "Toitū Te Whenua Land Information New Zealand",
-                    "roles": [ProviderRole.HOST, ProviderRole.PROCESSOR]
-                }
+                {"name": "Toitū Te Whenua Land Information New Zealand", "roles": [ProviderRole.HOST, ProviderRole.PROCESSOR]}
             ],
         }
 
