@@ -26,13 +26,25 @@ class ImageryCollection:
             "description": description,
             "license": "CC-BY-4.0",
             "links": [{"rel": "self", "href": "./collection.json", "type": "application/json"}],
-            "providers": [
-                {"name": "Toitū Te Whenua Land Information New Zealand", "roles": [ProviderRole.HOST, ProviderRole.PROCESSOR]}
-            ],
+            "providers": [],
         }
 
+        # If the providers passed has already a LINZ provider: add its default roles to it
+        has_linz = False
         if providers:
-            self.add_providers(providers)
+            linz = next((p for p in providers if p["name"] == "Toitū Te Whenua Land Information New Zealand"), None)
+            if linz:
+                linz["roles"].extend([ProviderRole.HOST, ProviderRole.PROCESSOR])
+                has_linz = True
+        else:
+            providers = []
+
+        if not has_linz:
+            providers.append(
+                {"name": "Toitū Te Whenua Land Information New Zealand", "roles": [ProviderRole.HOST, ProviderRole.PROCESSOR]}
+            )
+
+        self.add_providers(providers)
 
     def add_item(self, item: Dict[Any, Any]) -> None:
         item_self_link = next((feat for feat in item["links"] if feat["rel"] == "self"), None)
