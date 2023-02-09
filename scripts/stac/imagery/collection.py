@@ -29,8 +29,7 @@ class ImageryCollection:
             "providers": [
                 {
                     "name": "Toitū Te Whenua Land Information New Zealand",
-                    "roles": [ProviderRole.HOST, ProviderRole.PROCESSOR],
-                    "url": "www.linz.govt.nz",
+                    "roles": [ProviderRole.HOST, ProviderRole.PROCESSOR]
                 }
             ],
         }
