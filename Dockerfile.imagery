@@ -1,0 +1,27 @@
+FROM osgeo/gdal:ubuntu-small-3.6.1
+
+RUN apt-get update
+# Install pip
+RUN apt-get install python3-pip -y
+# Install Poetry
+RUN pip install poetry
+
+# Define the working directory for the following commands
+WORKDIR /app
+
+# Add Poetry config
+COPY poetry.lock pyproject.toml /app/
+
+# Install Python dependencies
+RUN poetry config virtualenvs.create false \
+    && poetry install --no-interaction --no-ansi --with imagery --without dev
+
+# Copy Python scripts
+COPY ./scripts/__init__.py /app/scripts/__init__.py
+COPY ./scripts/imagery /app/scripts/imagery
+COPY ./scripts/common /app/scripts/common
+
+ENV PYTHONPATH="/app"
+ENV GTIFF_SRS_SOURCE="EPSG"
+
+WORKDIR /app/scripts/imagery

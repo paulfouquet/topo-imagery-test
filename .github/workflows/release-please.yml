@@ -29,7 +29,8 @@ jobs:
 
       - name: Build containers
         run: |
-          docker build . --tag topo-imagery --label "github_run_id=${GITHUB_RUN_ID}"
+          docker build -f Dockerfile.imagery . --tag topo-imagery --label "github_run_id=${GITHUB_RUN_ID}"
+          docker build -f Dockerfile.elevation . --tag topo-elevation --label "github_run_id=${GITHUB_RUN_ID}"
 
       - name: Log in to registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
@@ -40,9 +41,16 @@ jobs:
           GIT_VERSION_MAJOR=$(echo $GIT_VERSION | cut -d. -f1)
           GIT_VERSION_MAJOR_MINOR=$(echo $GIT_VERSION | cut -d. -f1,2)
 
-          docker tag topo-imagery ghcr.io/linz/topo-imagery:latest
-          docker tag topo-imagery ghcr.io/linz/topo-imagery:${GIT_VERSION_MAJOR}
-          docker tag topo-imagery ghcr.io/linz/topo-imagery:${GIT_VERSION_MAJOR_MINOR}
-          docker tag topo-imagery ghcr.io/linz/topo-imagery:${GIT_VERSION}
+          docker tag topo-imagery ghcr.io/paulfouquet/topo-imagery:latest
+          docker tag topo-imagery ghcr.io/paulfouquet/topo-imagery:${GIT_VERSION_MAJOR}
+          docker tag topo-imagery ghcr.io/paulfouquet/topo-imagery:${GIT_VERSION_MAJOR_MINOR}
+          docker tag topo-imagery ghcr.io/paulfouquet/topo-imagery:${GIT_VERSION}
 
-          docker push --all-tags ghcr.io/linz/topo-imagery
+          docker push --all-tags ghcr.io/paulfouquet/topo-imagery
+
+          docker tag topo-elevation ghcr.io/paulfouquet/topo-elevation:latest
+          docker tag topo-elevation ghcr.io/paulfouquet/topo-elevation:${GIT_VERSION_MAJOR}
+          docker tag topo-elevation ghcr.io/paulfouquet/topo-elevation:${GIT_VERSION_MAJOR_MINOR}
+          docker tag topo-elevation ghcr.io/paulfouquet/topo-elevation:${GIT_VERSION}
+
+          docker push --all-tags ghcr.io/paulfouquet/topo-elevation
