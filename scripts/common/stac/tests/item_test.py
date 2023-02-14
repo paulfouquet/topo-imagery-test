@@ -11,7 +11,7 @@ def test_imagery_stac_item(mocker) -> None:  # type: ignore
     }
     bbox = (1799667.5, 5815977.0, 1800422.5, 5814986.0)
     checksum = "1220cdef68d62fb912110b810e62edc53de07f7a44fb2b310db700e9d9dd58baa6b4"
-    mocker.patch("scripts.stac.util.checksum.multihash_as_hex", return_value=checksum)
+    mocker.patch("scripts.common.stac.util.checksum.multihash_as_hex", return_value=checksum)
 
     path = "./test/BR34_5000_0302.tiff"
     id_ = get_file_name_from_path(path)
@@ -42,7 +42,7 @@ def test_imagery_add_collection(mocker) -> None:  # type: ignore
     path = "./test/BR34_5000_0302.tiff"
     id_ = get_file_name_from_path(path)
     checksum = "1220cdef68d62fb912110b810e62edc53de07f7a44fb2b310db700e9d9dd58baa6b4"
-    mocker.patch("scripts.stac.util.checksum.multihash_as_hex", return_value=checksum)
+    mocker.patch("scripts.common.stac.util.checksum.multihash_as_hex", return_value=checksum)
     item = ImageryItem(id_, path)
 
     item.add_collection(collection.stac["id"])

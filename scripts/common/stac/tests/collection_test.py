@@ -81,7 +81,7 @@ def test_interval_updated_from_existing(setup_collection: ImageryCollection) -> 
 def test_add_item(mocker, setup_collection: ImageryCollection) -> None:  # type: ignore
     collection = setup_collection
     checksum = "1220cdef68d62fb912110b810e62edc53de07f7a44fb2b310db700e9d9dd58baa6b4"
-    mocker.patch("scripts.stac.util.checksum.multihash_as_hex", return_value=checksum)
+    mocker.patch("scripts.common.stac.util.checksum.multihash_as_hex", return_value=checksum)
     item = ImageryItem("BR34_5000_0304", "./test/BR34_5000_0304.tiff")
     geometry = {
         "type": "Polygon",
