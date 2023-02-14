@@ -14,7 +14,7 @@ COPY poetry.lock pyproject.toml /app/
 
 # Install Python dependencies
 RUN poetry config virtualenvs.create false \
-    && poetry install --only main --no-interaction --no-ansi --with imagery
+    && poetry install --no-interaction --no-ansi --with imagery --without dev
 
 # Copy Python scripts
 COPY ./scripts/__init__.py /app/scripts/__init__.py
