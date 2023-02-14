@@ -14,7 +14,7 @@ jobs:
       - name: Install
         run: |
           pip install poetry
-          poetry install
+          poetry install --with imagery
       - name: Format
         run: |
           poetry run pre-commit run --all-files
