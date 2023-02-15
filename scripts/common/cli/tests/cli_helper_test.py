@@ -42,11 +42,11 @@ def test_format_source_json_loading_error() -> None:
 
 
 def test_parse_list() -> None:
-    str_list = "Auckland Council, Toitū Te Whenua Land Information New Zealand, Nelson Council"
+    str_list = "Auckland Council, Toitū Te Whenua Land Information New Zealand,Nelson Council,"
     list_parsed = parse_list(str_list)
     assert list_parsed == ["Auckland Council", "Toitū Te Whenua Land Information New Zealand", "Nelson Council"]
 
 
 def test_parse_list_empty() -> None:
     list_parsed = parse_list("")
-    assert list_parsed == [""]
+    assert list_parsed == []

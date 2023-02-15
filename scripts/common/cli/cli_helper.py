@@ -73,6 +73,15 @@ def valid_date(s: str) -> datetime:
 
 
 def parse_list(list_s: str) -> List[str]:
+    """Transform a string representing a list to a list of strings
+    example: "foo, bar, foo bar" -> ["foo", "bar", "foo bar"]
+
+    Args:
+        list_s: string representing a list to transform
+
+    Returns:
+        a list of strings
+    """
     if list_s:
-        return [s.strip() for s in list_s.split(",")]
+        return [s.strip() for s in list_s.split(",") if s != ""]
     return []
