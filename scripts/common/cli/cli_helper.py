@@ -70,3 +70,9 @@ def valid_date(s: str) -> datetime:
     except ValueError as e:
         msg = f"not a valid date: {s}"
         raise argparse.ArgumentTypeError(msg) from e
+
+
+def parse_list(list_s: str) -> List[str]:
+    if list_s:
+        return [s.strip() for s in list_s.split(",")]
+    return []
