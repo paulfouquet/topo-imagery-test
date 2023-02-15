@@ -1,7 +1,7 @@
 import argparse
 import json
 import os
-from typing import Any, Dict, List, Union
+from typing import List
 
 from boto3 import client
 from linz_logger import get_log
