@@ -118,6 +118,12 @@ class FileTiff:
                 error_message=f"bands count is not {bands_num}",
                 custom_fields={"count": f"{int(bands_num)}"},
             )
+        # TODO remove - this is for testing
+        self.add_error(
+            error_type=FileTiffErrorType.BANDS,
+            error_message=f"bands count is not {bands_num}",
+            custom_fields={"count": f"{int(bands_num)}"},
+        )
 
     def check_srs(self, gdalsrsinfo_tif: bytes) -> None:
         """Add an error if gdalsrsinfo and gdalsrsinfo_tif values are different.
