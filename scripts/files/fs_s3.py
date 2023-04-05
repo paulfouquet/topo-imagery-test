@@ -121,3 +121,43 @@ def get_object_parallel_multithreading(
                 yield key, future.result()
             else:
                 yield key, exception
+
+
+def exists(path: str, needs_credentials: bool = False) -> bool:
+    """Check if s3 Object exists
+
+    Args:
+        path: path to the s3 object/key
+        needs_credentials: if acces to object needs credentials. Defaults to False.
+
+    Raises:
+        ce: ClientError
+        nsb: NoSuchBucket
+
+    Returns:
+        True if the S3 Object exists
+    """
+    s3_path, key = parse_path(path)
+    s3 = boto3.resource("s3")
+
+    try:
+        if needs_credentials:
+            s3 = get_session(path).resource("s3")
+        # load() fetch the metadata, not the data. Calls a `head` behind the scene.
+        s3.Object(s3_path, key).load()
+        return True
+    except s3.meta.client.exceptions.NoSuchBucket as nsb:
+        get_log().debug("s3_bucket_not_found", path=path, info=f"The specified bucket does not seem to exist: {nsb}")
+        return False
+    except s3.meta.client.exceptions.ClientError as ce:
+        if not needs_credentials and ce.response["Error"]["Code"] == "AccessDenied":
+            get_log().debug("read_s3_needs_credentials", path=path)
+            return exists(path, True)
+        # https://boto3.amazonaws.com/v1/documentation/api/latest/guide/error-handling.html#parsing-error-responses-and-catching-exceptions-from-aws-services
+        # 404 for NoSuchKey - https://github.com/boto/boto3/issues/2442
+        if ce.response["Error"]["Code"] == "404":
+            get_log().debug("s3_key_not_found", path=path, info=f"The specified key does not seem to exist: {ce}")
+            return False
+
+        get_log().error("s3_client_error", path=path, error=f"ClientError raised: {ce}")
+        raise ce
