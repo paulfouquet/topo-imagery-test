@@ -1,6 +1,7 @@
 import argparse
 import json
 import os
+import sys
 from typing import List
 
 from linz_logger import get_log
@@ -45,7 +46,7 @@ def main() -> None:
     concurrency: int = 1
     if is_argo():
         concurrency = 4
-
+    sys.exit(1)
     is_resuming = exists(arguments.target)
     no_stac_tiffs: List[FileTiff] = []
     if is_resuming:
