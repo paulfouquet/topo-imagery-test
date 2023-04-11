@@ -43,5 +43,4 @@ def exists(path: str) -> bool:
     """
     if is_s3(path):
         return fs_s3.exists(path)
-    else:
-        return os.path.exists(path)
+    return os.path.exists(path)
