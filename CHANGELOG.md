@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.3.0](https://github.com/paulfouquet/topo-imagery-test/compare/v2.2.0...v2.3.0) (2023-04-11)
+
+
+### Features
+
+* makes it fail ([8a6c6c8](https://github.com/paulfouquet/topo-imagery-test/commit/8a6c6c8839d954bea9c43b0cc5f57029bb44e287))
+
+
+### Bug Fixes
+
+* formatting fails ([39bf7f7](https://github.com/paulfouquet/topo-imagery-test/commit/39bf7f72130e92a0e69a419e19312a47cc2f6aa6))
+
 ## [2.2.0](https://github.com/paulfouquet/topo-imagery-test/compare/v2.1.0...v2.2.0) (2023-04-11)
 
 
