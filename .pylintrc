@@ -5,6 +5,8 @@ disable =
         missing-module-docstring,
         missing-function-docstring,
         broad-exception-raised,
+        too-many-statements,
+        too-many-branches
 
 [FORMAT]
 max-line-length=127

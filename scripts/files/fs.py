@@ -1,3 +1,5 @@
+import os
+
 from scripts.aws.aws_helper import is_s3
 from scripts.files import fs_local, fs_s3
 
@@ -28,3 +30,17 @@ def read(path: str) -> bytes:
         return fs_s3.read(path)
 
     return fs_local.read(path)
+
+
+def exists(path: str) -> bool:
+    """Check if path (file or directory) exists
+
+    Args:
+        path: A path to a directory
+
+    Returns:
+        True if the path exists
+    """
+    if is_s3(path):
+        return fs_s3.exists(path)
+    return os.path.exists(path)
