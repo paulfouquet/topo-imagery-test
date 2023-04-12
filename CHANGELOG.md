@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.6.0](https://github.com/paulfouquet/topo-imagery-test/compare/v2.5.0...v2.6.0) (2023-04-12)
+
+
+### Features
+
+* makes it work again ([b9badc1](https://github.com/paulfouquet/topo-imagery-test/commit/b9badc162028174bdccc66567b64ab4860c8b9c0))
+
 ## [2.5.0](https://github.com/paulfouquet/topo-imagery-test/compare/v2.4.0...v2.5.0) (2023-04-12)
 
 
