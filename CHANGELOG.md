@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.5.0](https://github.com/paulfouquet/topo-imagery-test/compare/v2.4.0...v2.5.0) (2023-04-12)
+
+
+### Features
+
+* fix fs_s3.exists() and makes standardise_validate failing ([7a69f93](https://github.com/paulfouquet/topo-imagery-test/commit/7a69f93e0ea18af29d6615311ecc993f5d5e072e))
+
 ## [2.4.0](https://github.com/paulfouquet/topo-imagery-test/compare/v2.3.0...v2.4.0) (2023-04-11)
 
 
