@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.0](https://github.com/paulfouquet/topo-imagery-test/compare/v3.0.0...v3.1.0) (2023-04-25)
+
+
+### Features
+
+* standardising fails ([b7c3c41](https://github.com/paulfouquet/topo-imagery-test/commit/b7c3c41b4036466f642f355f95532bb02f7bedca))
+
 ## [3.0.0](https://github.com/paulfouquet/topo-imagery-test/compare/v2.0.0...v3.0.0) (2023-04-14)
 
 
