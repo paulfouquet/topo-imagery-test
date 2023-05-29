@@ -18,6 +18,7 @@ from scripts.gdal.gdal_preset import DataType, get_gdal_command
 from scripts.logging.time_helper import time_in_ms
 
 
+# pylint: disable=duplicate-code
 def run_standardising(
     files: List[str],
     concurrency: int,
