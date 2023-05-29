@@ -3,7 +3,7 @@ import os
 import tempfile
 from functools import partial
 from multiprocessing import Pool
-from typing import List, Optional
+from typing import List
 
 import ulid
 from linz_logger import get_log
@@ -22,7 +22,7 @@ from scripts.logging.time_helper import time_in_ms
 def run_standardising(
     files: List[str],
     concurrency: int,
-    target_output: Optional[str] = None,
+    target_output: str = "/tmp/",
 ) -> List[FileTiff]:
     # pylint: disable-msg=too-many-arguments
     start_time = time_in_ms()
