@@ -1,6 +1,13 @@
+from enum import Enum
 from typing import List, Optional
 
 from linz_logger import get_log
+
+
+class DataType(str, Enum):
+    IMAGERY = "imagery"
+    ELEVATION = "elevation"
+
 
 # Scale imagery from 0-255 to 0-254 then set 255 as NO_DATA
 # Useful for imagery that does not have a alpha band
@@ -12,12 +19,15 @@ BASE_COG = [
     # Output to a COG
     "-of",
     "COG",
-    # Tile the image int 512x512px images
-    "-co",
-    "blocksize=512",
     # Ensure all CPUs are used for gdal translate
     "-co",
     "num_threads=all_cpus",
+]
+
+COG_IMAGERY = [
+    # Tile the image int 512x512px images
+    "-co",
+    "blocksize=512",
     # If not all tiles are needed in the tiff, instead of writing empty images write a null byte
     # this significantly reduces the size of tiffs which are very sparse
     "-co",
@@ -73,22 +83,25 @@ CONVERT_16BITS_TO_8BITS = [
 ]
 
 
-def get_gdal_command(preset: str, epsg: str, convert_from: Optional[str] = None) -> List[str]:
+def get_gdal_command(preset: str, epsg: str, data_type: DataType, convert_from: Optional[str] = None) -> List[str]:
     get_log().info("gdal_preset", preset=preset)
     gdal_command: List[str] = ["gdal_translate"]
 
     gdal_command.extend(BASE_COG)
+    if data_type == DataType.IMAGERY:
+        gdal_command.extend(COG_IMAGERY)
+        gdal_command.extend(WEBP_OVERVIEWS)
+
     # Force the source projection to an input EPSG
     gdal_command.extend(["-a_srs", f"EPSG:{epsg}"])
 
     if preset == "lzw":
-        gdal_command.extend(SCALE_254_ADD_NO_DATA)
+        if data_type == DataType.IMAGERY:
+            gdal_command.extend(SCALE_254_ADD_NO_DATA)
         gdal_command.extend(COMPRESS_LZW)
 
     elif preset == "webp":
         gdal_command.extend(COMPRESS_WEBP_LOSSLESS)
-
-    gdal_command.extend(WEBP_OVERVIEWS)
 
     if convert_from == "UInt16":
         gdal_command.extend(CONVERT_16BITS_TO_8BITS)

@@ -15,7 +15,13 @@ from scripts.files.files_helper import get_file_name_from_path, is_tiff, is_vrt
 from scripts.files.fs import exists, read, write
 from scripts.gdal.gdal_bands import get_gdal_band_offset, get_gdal_band_type
 from scripts.gdal.gdal_helper import get_gdal_version, run_gdal
-from scripts.gdal.gdal_preset import get_alpha_command, get_cutline_command, get_gdal_command, get_transform_srs_command
+from scripts.gdal.gdal_preset import (
+    DataType,
+    get_alpha_command,
+    get_cutline_command,
+    get_gdal_command,
+    get_transform_srs_command,
+)
 from scripts.gdal.gdalinfo import gdal_info, get_origin
 from scripts.logging.time_helper import time_in_ms
 from scripts.tile.tile_index import TileIndexException, get_tile_name
@@ -159,7 +165,10 @@ def standardising(
             # gdalinfo to get band offset and band type
             transformed_image_gdalinfo = gdal_info(input_file, False)
             command = get_gdal_command(
-                preset, epsg=target_epsg, convert_from=get_gdal_band_type(input_file, transformed_image_gdalinfo)
+                preset,
+                epsg=target_epsg,
+                data_type=DataType.IMAGERY,
+                convert_from=get_gdal_band_type(input_file, transformed_image_gdalinfo),
             )
             command.extend(get_gdal_band_offset(input_file, transformed_image_gdalinfo))
             run_gdal(command, input_file=input_file, output_file=standardized_working_path)
