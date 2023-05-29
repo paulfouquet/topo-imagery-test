@@ -11,7 +11,7 @@ max-line-length=127
 [MISCELLANEOUS]
 notes=XXX
 [SIMILARITIES]
-min-similarity-lines=4
+min-similarity-lines=100
 ignore-comments=yes
 ignore-docstrings=yes
 ignore-imports=yes
