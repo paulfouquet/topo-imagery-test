@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.1](https://github.com/paulfouquet/topo-imagery-test/compare/v4.0.0...v4.0.1) (2023-07-17)
+
+
+### Bug Fixes
+
+* using secret fails when no secret ([cbc4f7a](https://github.com/paulfouquet/topo-imagery-test/commit/cbc4f7ae92419c987eab14741551c11899af56cf))
+
 ## [4.0.0](https://github.com/paulfouquet/topo-imagery-test/compare/v3.0.0...v4.0.0) (2023-07-17)
 
 
