@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.0.4](https://github.com/paulfouquet/topo-imagery-test/compare/v4.0.3...v4.0.4) (2023-07-17)
+
+
+### Bug Fixes
+
+* test ([45af793](https://github.com/paulfouquet/topo-imagery-test/commit/45af7933ecd98abfd10e72a693c1608d442c1247))
+* use aws-credentials v2 ([44e809d](https://github.com/paulfouquet/topo-imagery-test/commit/44e809d38f92e566cd6840c755d4b603208406bc))
+
 ## [4.0.3](https://github.com/paulfouquet/topo-imagery-test/compare/v4.0.2...v4.0.3) (2023-07-17)
 
 
