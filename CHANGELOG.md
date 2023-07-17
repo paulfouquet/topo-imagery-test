@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.2](https://github.com/paulfouquet/topo-imagery-test/compare/v4.0.1...v4.0.2) (2023-07-17)
+
+
+### Bug Fixes
+
+* secret was used instead of env ([fd59fc7](https://github.com/paulfouquet/topo-imagery-test/commit/fd59fc7cc102143c620a8f40672ffafdeddd6b1d))
+
 ## [4.0.1](https://github.com/paulfouquet/topo-imagery-test/compare/v4.0.0...v4.0.1) (2023-07-17)
 
 
