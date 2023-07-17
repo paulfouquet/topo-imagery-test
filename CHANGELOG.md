@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.3](https://github.com/paulfouquet/topo-imagery-test/compare/v4.0.2...v4.0.3) (2023-07-17)
+
+
+### Bug Fixes
+
+* remove typescript dependency ([81dc4a9](https://github.com/paulfouquet/topo-imagery-test/commit/81dc4a92867ad77b2a9a5c3f16899e8a48589995))
+
 ## [4.0.2](https://github.com/paulfouquet/topo-imagery-test/compare/v4.0.1...v4.0.2) (2023-07-17)
 
 
