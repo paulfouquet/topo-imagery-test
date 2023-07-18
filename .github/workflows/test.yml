@@ -38,6 +38,3 @@ jobs:
           aws-region: ap-southeast-2
           mask-aws-account-id: true
           role-to-assume: ${{ env.AWS_CI_ROLE }}
-
-
-    
