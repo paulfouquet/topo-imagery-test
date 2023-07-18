@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.5](https://github.com/paulfouquet/topo-imagery-test/compare/v4.0.4...v4.0.5) (2023-07-18)
+
+
+### Bug Fixes
+
+* test on empty string ([f9e0818](https://github.com/paulfouquet/topo-imagery-test/commit/f9e0818c30b483c780ae7ea2c8b88e61afc5346c))
+
 ## [4.0.4](https://github.com/paulfouquet/topo-imagery-test/compare/v4.0.3...v4.0.4) (2023-07-17)
 
 
