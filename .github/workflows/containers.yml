@@ -67,7 +67,7 @@ jobs:
         with:
           result-encoding: string
           script: |
-            console.log(${{ github.event.repository.name }});
+            console.log('${{ github.event.repository.name }}');
             const tags = [];
             tags.push('ghcr.io/${{ github.repository }}:latest');
             tags.push('ghcr.io/${{ github.repository }}:${{ steps.version.outputs.version }}');
