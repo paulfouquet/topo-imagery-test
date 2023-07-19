@@ -67,7 +67,6 @@ jobs:
         with:
           result-encoding: string
           script: |
-            console.log('${{ github.event.repository.name }}');
             const tags = [];
             tags.push('ghcr.io/${{ github.repository }}:latest');
             tags.push('ghcr.io/${{ github.repository }}:${{ steps.version.outputs.version }}');
@@ -81,7 +80,6 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          file: ./Dockerfile
           tags: ${{ steps.tags.outputs.result }}
           push: ${{(github.ref == 'refs/heads/master') && !(startsWith(github.event.head_commit.message, 'release:'))}}
           labels: ${{ steps.meta.outputs.labels }}
