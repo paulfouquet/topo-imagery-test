@@ -1,5 +1,20 @@
 # Changelog
 
+## [4.1.0](https://github.com/paulfouquet/topo-imagery-test/compare/v4.0.5...v4.1.0) (2023-07-19)
+
+
+### Features
+
+* do some test with GHA ([3922e75](https://github.com/paulfouquet/topo-imagery-test/commit/3922e7524ba95520c08940134529ee1594e5bb8b))
+* do some test with GHA ([1bcc68f](https://github.com/paulfouquet/topo-imagery-test/commit/1bcc68f4b6ee966c0914f0a2f9ec2d388fada728))
+* release please action updated ([67568fd](https://github.com/paulfouquet/topo-imagery-test/commit/67568fd6764640f033262974455f91dca8500fd2))
+* test ([0a06a64](https://github.com/paulfouquet/topo-imagery-test/commit/0a06a640404ae6f0ff5b6d412ffadd838425f5f1))
+
+
+### Bug Fixes
+
+* ci conditions ([2e0db3a](https://github.com/paulfouquet/topo-imagery-test/commit/2e0db3ae27f836cb308342b66289e784f0476291))
+
 ## [4.0.5](https://github.com/paulfouquet/topo-imagery-test/compare/v4.0.4...v4.0.5) (2023-07-18)
 
 
