@@ -108,6 +108,7 @@ def download_one_file(destination: str, s3_file: str) -> None:
         client (boto3.client): S3 client
         s3_file (str): S3 object name
     """
+    get_log().debug("download_file", path=s3_file)
     write(os.path.join(destination, f"{str(ulid.ULID())}.tiff"), read(os.path.join(s3_file)))
     # client.download_file(Bucket=bucket, Key=s3_file, Filename=os.path.join(destination, f"{str(ulid.ULID())}.tiff"))
 

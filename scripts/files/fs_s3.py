@@ -91,8 +91,6 @@ def exists(path: str, needs_credentials: bool = False) -> bool:
     Returns:
         True if the S3 Object exists
     """
-    debugpy.listen(("0.0.0.0", 5678))
-    debugpy.wait_for_client()
     s3_path, key = parse_path(path)
     s3 = boto3.resource("s3")
 
