@@ -4,7 +4,6 @@ from typing import Any, Generator, List, Optional, Union
 
 import boto3
 import botocore
-import debugpy
 from linz_logger import get_log
 
 from scripts.aws.aws_helper import get_session, parse_path
