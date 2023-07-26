@@ -1,5 +1,6 @@
 import os
 import tempfile
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from functools import partial
 from multiprocessing import Pool
 from typing import List
@@ -9,10 +10,12 @@ from linz_logger import get_log
 
 from scripts.cli.cli_helper import TileFiles
 from scripts.files.file_tiff import FileTiff
-from scripts.files.fs import exists
+from scripts.files.fs import exists, read, write
 from scripts.gdal.gdal_helper import get_gdal_version, run_gdal
 from scripts.gdal.gdal_preset import get_build_vrt_command
 from scripts.logging.time_helper import time_in_ms
+
+# import tqdm
 
 
 def run_standardising(
@@ -80,12 +83,48 @@ def download_tiffs(files: List[str], target: str) -> List[str]:
         input_file_path = target_file_path + ".tiff"
         get_log().info("download_tiff", path=file, target_path=input_file_path)
 
-        # Call head object
-        exists(file)
-
+        write(input_file_path, read(file))
         downloaded_files.append(input_file_path)
 
+        base_file_path = os.path.splitext(file)[0]
+        # Attempt to download sidecar files too
+        for ext in [".prj", ".tfw"]:
+            try:
+                write(target_file_path + ext, read(base_file_path + ext))
+                get_log().info("download_tiff_sidecar", path=base_file_path + ext, target_path=target_file_path + ext)
+
+            except:  # pylint: disable-msg=bare-except
+                pass
+
     return downloaded_files
+
+
+def download_one_file(destination: str, s3_file: str) -> None:
+    """
+    Download a single file from S3
+    Args:
+        bucket (str): S3 bucket where images are hosted
+        output (str): Dir to store the images
+        client (boto3.client): S3 client
+        s3_file (str): S3 object name
+    """
+    write(os.path.join(destination, f"{str(ulid.ULID())}.tiff"), read(os.path.join(s3_file)))
+    # client.download_file(Bucket=bucket, Key=s3_file, Filename=os.path.join(destination, f"{str(ulid.ULID())}.tiff"))
+
+
+def downloads_multithread_tiffs(inputs: List[str], destination: str, concurrency: int = 10) -> None:
+    # Creating only one session and one client
+    # The client is shared between threads
+    func = partial(download_one_file, destination)
+
+    with ThreadPoolExecutor(max_workers=concurrency) as executor:
+        # Using a dict for preserving the downloaded file for each future, to store it as a failure if we need that
+        futures = {executor.submit(func, input): input for input in inputs}
+        for future in as_completed(futures):
+            # TODO: add returned dowload to list.
+            if future.exception():
+                print(future.exception())
+                get_log().info("Failed Download", error=future.exception())
 
 
 def create_vrt(source_tiffs: List[str], target_path: str, add_alpha: bool = False) -> str:
@@ -137,9 +176,8 @@ def standardising(
         get_log().info("standardised_tiff_already_exists", path=standardized_file_path)
         return tiff
 
-    # Download any needed file from S3 ["/foo/bar.tiff", "s3://foo"] => "/tmp/bar.tiff", "/tmp/foo.tiff"
-    with tempfile.TemporaryDirectory() as tmp_path:
-        os.path.join(tmp_path, standardized_file_name)
-        download_tiffs(files.input, tmp_path)
+    tmp_path = tempfile.mkdtemp()
+
+    downloads_multithread_tiffs(files.input, tmp_path)
 
     return tiff

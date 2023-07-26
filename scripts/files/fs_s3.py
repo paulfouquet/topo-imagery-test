@@ -4,6 +4,7 @@ from typing import Any, Generator, List, Optional, Union
 
 import boto3
 import botocore
+import debugpy
 from linz_logger import get_log
 
 from scripts.aws.aws_helper import get_session, parse_path
@@ -90,6 +91,8 @@ def exists(path: str, needs_credentials: bool = False) -> bool:
     Returns:
         True if the S3 Object exists
     """
+    debugpy.listen(("0.0.0.0", 5678))
+    debugpy.wait_for_client()
     s3_path, key = parse_path(path)
     s3 = boto3.resource("s3")
 
@@ -108,6 +111,7 @@ def exists(path: str, needs_credentials: bool = False) -> bool:
             return False
 
         # load() fetch the metadata, not the data. Calls a `head` behind the scene.
+        # FIXME Might need a different role than the `read` role!
         s3.Object(s3_path, key).load()
         return True
     except s3.meta.client.exceptions.NoSuchBucket as nsb:
