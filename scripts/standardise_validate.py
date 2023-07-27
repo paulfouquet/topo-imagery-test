@@ -1,6 +1,5 @@
 import argparse
 import json
-import sys
 from typing import List
 
 from scripts.cli.cli_helper import TileFiles, format_source, is_argo
@@ -18,7 +17,6 @@ def main() -> None:
     )
     arguments = parser.parse_args()
 
-   
     # FIXME: `source` has to be a list to be parsed in `format_source()`
     source = [json.dumps(json.loads(read(arguments.from_file)))]
 

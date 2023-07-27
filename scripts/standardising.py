@@ -82,19 +82,9 @@ def download_tiffs(files: List[str], target: str) -> List[str]:
         target_file_path = os.path.join(target, str(ulid.ULID()))
         input_file_path = target_file_path + ".tiff"
         get_log().info("download_tiff", path=file, target_path=input_file_path)
+        read(file)
 
-        write(input_file_path, read(file))
         downloaded_files.append(input_file_path)
-
-        base_file_path = os.path.splitext(file)[0]
-        # Attempt to download sidecar files too
-        for ext in [".prj", ".tfw"]:
-            try:
-                write(target_file_path + ext, read(base_file_path + ext))
-                get_log().info("download_tiff_sidecar", path=base_file_path + ext, target_path=target_file_path + ext)
-
-            except:  # pylint: disable-msg=bare-except
-                pass
 
     return downloaded_files
 
@@ -179,6 +169,6 @@ def standardising(
 
     tmp_path = tempfile.mkdtemp()
 
-    downloads_multithread_tiffs(files.input, tmp_path)
-
+    # downloads_multithread_tiffs(files.input, tmp_path)
+    download_tiffs(files.input, tmp_path)
     return tiff
