@@ -35,4 +35,3 @@ jobs:
           else 
             echo "$TIFF doesn't exist"
           fi
-
