@@ -6,7 +6,7 @@ from typing import List, Optional
 
 import ulid
 from linz_logger import get_log
-from osgeo import gdal, osr
+from osgeo import gdal, osr  # pylint: disable-msg=import-error
 
 from scripts.aws.aws_helper import is_s3
 from scripts.cli.cli_helper import TileFiles
@@ -131,6 +131,7 @@ def create_vrt(source_tiffs: List[str], target_path: str, add_alpha: bool = Fals
 
 
 # pylint: disable-msg=too-many-locals
+# pylint: disable-msg=too-many-statements
 def standardising(
     files: TileFiles,
     preset: str,
@@ -173,7 +174,7 @@ def standardising(
         vrt_add_alpha = True
 
         for file in source_tiffs:
-             # force epsg
+            # force epsg
             raster = gdal.Open(file)
             epsg = 2193
             srs = osr.SpatialReference()
