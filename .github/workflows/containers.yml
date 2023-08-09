@@ -5,7 +5,7 @@ on:
     branches: ["master"]
     types:
       - completed
-      
+
 jobs:
   build-containers:
     runs-on: ubuntu-latest
