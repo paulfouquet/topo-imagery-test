@@ -1,0 +1,6 @@
+[
+  {
+    "output": "BA32_10000_0404",
+    "input": ["./tests/data/different_proj.tiff", "./tests/data/DEM_BA32_2016_1000_4032.tif"]
+  }
+]
