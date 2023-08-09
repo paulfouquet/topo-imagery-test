@@ -1,6 +1,10 @@
 name: Build and Publish Containers
 on:
-  workflow_call:
+  workflow_run:
+    workflows: ["Format and Test"]
+    branches: ["master"]
+    types:
+      - completed
   push:
     branches:
       - master
