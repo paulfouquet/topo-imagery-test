@@ -5,9 +5,7 @@ on:
     branches: ["master"]
     types:
       - completed
-  push:
-    branches:
-      - master
+      
 jobs:
   build-containers:
     runs-on: ubuntu-latest
