@@ -9,6 +9,7 @@ name: release-please
 jobs:
   release-please:
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     outputs:
       release_created: ${{ steps.release.outputs.release_created }}
     steps:
@@ -28,7 +29,7 @@ jobs:
       packages: write
     env:
       AWS_CI_ROLE: ${{ secrets.AWS_CI_ROLE }}
-    if: ${{ needs.release-please.outputs.release_created }}
+    if: ${{ needs.release-please.outputs.release_created && github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
