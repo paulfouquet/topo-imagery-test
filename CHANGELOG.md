@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.1.0](https://github.com/paulfouquet/topo-imagery-test/compare/v5.0.0...v5.1.0) (2023-08-10)
+
+
+### Features
+
+* test on argo ([a06b962](https://github.com/paulfouquet/topo-imagery-test/commit/a06b9629b8a524ebab14e5b1603612c9e97dca51))
+
 ## [5.0.0](https://github.com/paulfouquet/topo-imagery-test/compare/v4.0.0...v5.0.0) (2023-08-10)
 
 
