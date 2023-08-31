@@ -30,7 +30,7 @@ BASE_COG = [
     # Force everything into big tiff
     # this converts all offsets from 32bit to 64bit to support TIFFs > 4GB in size
     "-co",
-    "bigtiff=yes",
+    "bigtiff=no",
 ]
 
 DEM_LERC = [
