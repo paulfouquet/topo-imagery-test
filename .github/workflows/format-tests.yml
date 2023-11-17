@@ -40,8 +40,7 @@ jobs:
         with:
           name: gdal-output
           path: |
-            ${HOME}/tmp/BK39_10000_0102.tiff
-            ${HOME}/tmp/BK39_10000_0101.tiff
+            ${HOME}/tmp/
         if: failure()
 
       - name: End to end test - Historical Aerial Imagery
