@@ -43,7 +43,7 @@ jobs:
         with:
           name: gdal-output
           path: |
-            "${HOME}/tmp/"
+            /home/runner/tmp
         if: failure()
 
       - name: End to end test - Historical Aerial Imagery
