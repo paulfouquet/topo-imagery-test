@@ -1,13 +1,12 @@
 from concurrent import futures
 from concurrent.futures import ThreadPoolExecutor
-from typing import Any, Generator, List, Optional, Union
+from typing import Any, Generator, List, Optional, Tuple, Union
 
 import boto3
 import botocore
 from linz_logger import get_log
 
 from scripts.aws.aws_helper import get_session, parse_path
-from scripts.files.files_helper import is_json
 from scripts.logging.time_helper import time_in_ms
 
 
@@ -168,7 +167,7 @@ def prefix_from_path(path: str) -> str:
     return path.replace(f"s3://{bucket_name}/", "")
 
 
-def list_json_in_uri(uri: str, s3_client: Optional[boto3.client]) -> List[str]:
+def list_files_in_uri(uri: str, suffixes: Tuple[str, ...], s3_client: Optional[boto3.client]) -> List[str]:
     """Get the `JSON` files from a s3 path
 
     Args:
@@ -187,7 +186,7 @@ def list_json_in_uri(uri: str, s3_client: Optional[boto3.client]) -> List[str]:
     for response in response_iterator:
         for contents_data in response["Contents"]:
             key = contents_data["Key"]
-            if not is_json(key):
+            if not key.lower().endswith(suffixes):
                 get_log().trace("skipping file not json", file=key, action="collection_from_items", reason="skip")
                 continue
             files.append(key)

@@ -17,6 +17,7 @@ from scripts.gdal.gdal_preset import (
     get_alpha_command,
     get_build_vrt_command,
     get_cutline_command,
+    get_footprint_command,
     get_gdal_command,
     get_transform_srs_command,
 )
@@ -118,7 +119,9 @@ def standardising(
         a FileTiff wrapper
     """
     standardized_file_name = files.output + ".tiff"
+    footprint_file_name = files.output + "_footprint.geojson"
     standardized_file_path = os.path.join(target_output, standardized_file_name)
+    footprint_file_path = os.path.join(target_output, footprint_file_name)
     tiff = FileTiff(files.inputs, preset)
     tiff.set_path_standardised(standardized_file_path)
 
@@ -130,6 +133,7 @@ def standardising(
     # Download any needed file from S3 ["/foo/bar.tiff", "s3://foo"] => "/tmp/bar.tiff", "/tmp/foo.tiff"
     with tempfile.TemporaryDirectory() as tmp_path:
         standardized_working_path = os.path.join(tmp_path, standardized_file_name)
+        footprint_tmp_path = os.path.join(tmp_path, footprint_file_name)
         sidecars = find_sidecars(files.inputs, [".prj", ".tfw"])
         source_files = write_all(files.inputs + sidecars, f"{tmp_path}/source/")
         source_tiffs = [file for file in source_files if is_tiff(file)]
@@ -195,5 +199,14 @@ def standardising(
         # Need GDAL to write to temporary location so no broken files end up in the done folder.
         run_gdal(command, input_file=input_file, output_file=standardized_working_path)
 
+        # Create footprint GeoJSON
+        run_gdal(get_footprint_command(), standardized_working_path, footprint_tmp_path)
+
+        # Save both tiff and footprint into target
         write(standardized_file_path, read(standardized_working_path), content_type=ContentType.GEOTIFF.value)
+        write(
+            footprint_file_path,
+            read(footprint_tmp_path),
+            content_type=ContentType.GEOJSON,
+        )
         return tiff

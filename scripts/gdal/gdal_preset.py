@@ -267,3 +267,12 @@ def get_ascii_translate_command() -> List[str]:
         "-co",
         "COMPRESS=lzw",
     ]
+
+
+def get_footprint_command() -> List[str]:
+    """Get a `gdal_footprint` command where output geometry is expressed in `WGS84`.
+
+    Returns:
+        a list of arguments to run `gdal_footprint`
+    """
+    return ["gdal_footprint", "-t_cs", "georef", "-t_srs", "+proj=longlat +ellps=WGS84"]
