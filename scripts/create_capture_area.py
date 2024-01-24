@@ -36,7 +36,8 @@ def main() -> None:
         content = json.load(result["Body"])
         if key.endswith(SUFFIX_FOOTPRINT):
             get_log().debug(f"adding geometry from {key}")
-            polygons.append(shapely.geometry.shape(content["features"][0]["geometry"]))
+            if len(content["features"]) > 0:
+                polygons.append(shapely.geometry.shape(content["features"][0]["geometry"]))
 
     capture_area_content = generate_capture_area(polygons)
     capture_area_target = os.path.join(arguments.target, CAPTURE_AREA_FILE_NAME)
