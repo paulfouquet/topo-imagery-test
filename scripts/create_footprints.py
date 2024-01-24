@@ -19,10 +19,11 @@ def create_footprint(source_tiff: str, tmp_path: str, target: str) -> str | None
         return None
 
     basename = get_file_name_from_path(source_tiff)
+    tmp_footprint = os.path.join(tmp_path, f"{basename}{SUFFIX_FOOTPRINT}")
     target_footprint = os.path.join(target, f"{basename}{SUFFIX_FOOTPRINT}")
     # Verify the footprint has not been already generated
-    if exists(target_footprint):
-        get_log().info("footprint_already_exists", path=target_footprint)
+    if exists(tmp_footprint):
+        get_log().info("footprint_already_exists", path=tmp_footprint)
         return None
     local_tiff = os.path.join(tmp_path, f"{basename}.tiff")
     # Download source tiff
@@ -32,9 +33,10 @@ def create_footprint(source_tiff: str, tmp_path: str, target: str) -> str | None
     run_gdal(
                 ["gdal_footprint", "-t_srs", "EPSG:4326"],
                 local_tiff,
-                target_footprint,
+                tmp_footprint,
             )
     
+    write(target_footprint, read(tmp_footprint))
     return target_footprint
 
 
@@ -60,7 +62,7 @@ def main() -> None:
                     partial(
                         create_footprint,
                         tmp_path=tmp_path,
-                        target=tmp_path,
+                        target=arguments.target,
                     ),
                     tiff_list,
                 )
