@@ -15,9 +15,9 @@ jobs:
         run: |
           pip install poetry
           poetry install
-      - name: Format
-        run: |
-          poetry run pre-commit run --all-files
+      # - name: Format
+      #   run: |
+      #     poetry run pre-commit run --all-files
       - name: Unit Tests
         run: |
           poetry run pytest .

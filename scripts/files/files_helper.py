@@ -4,6 +4,9 @@ from typing import Optional
 
 from scripts.gdal.gdalinfo import GdalInfo, gdal_info
 
+SUFFIX_JSON = ".json"
+SUFFIX_FOOTPRINT = "_footprint.geojson"
+
 
 class ContentType(str, Enum):
     GEOTIFF = "image/tiff; application=geotiff; profile=cloud-optimized"
@@ -69,23 +72,3 @@ def is_geotiff(path: str, gdalinfo_data: Optional[GdalInfo] = None) -> bool:
     if gdalinfo_data["driverShortName"] == "GTiff":
         return True
     return False
-
-
-def is_json(path: str) -> bool:
-    """Verify if file is a JSON.
-
-    Args:
-        path: a path to a file
-
-    Returns:
-        True if the file is a JSON
-
-    Examples:
-        ```
-        >>> is_tiff("/a/path/to/file.json")
-        True
-        >>> is_tiff("/a/path/to/file.csv")
-        False
-        ```
-    """
-    return path.lower().endswith(".json")
