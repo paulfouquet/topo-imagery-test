@@ -22,6 +22,7 @@ def main() -> None:
         "--source", dest="source", required=True, help="The path to the footprints"
     )
     parser.add_argument("--target", dest="target", required=True, help="The path to save the capture-area.")
+    parser.add_argument("--gsd", dest="gsd", required=True, help="The dataset gsd.")
     arguments = parser.parse_args()
     source = arguments.source
 
@@ -39,7 +40,7 @@ def main() -> None:
             if len(content["features"]) > 0:
                 polygons.append(shapely.geometry.shape(content["features"][0]["geometry"]))
 
-    capture_area_content = generate_capture_area(polygons)
+    capture_area_content = generate_capture_area(polygons, float(arguments.gsd.replace("m", "")))
     capture_area_target = os.path.join(arguments.target, CAPTURE_AREA_FILE_NAME)
     write(
             capture_area_target,

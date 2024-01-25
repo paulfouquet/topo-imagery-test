@@ -31,7 +31,7 @@ def merge_polygons(polygons: List[Polygon], buffer_distance: float) -> Geometry:
     return union
 
 
-def generate_capture_area(polygons: List[Polygon]) -> Dict[str, Any]:
+def generate_capture_area(polygons: List[Polygon], gsd: float) -> Dict[str, Any]:
     """Generate the capture area from a list of polygons.
 
     Args:
@@ -40,12 +40,9 @@ def generate_capture_area(polygons: List[Polygon]) -> Dict[str, Any]:
     Returns:
         The capture-area document.
     """
-    # Degree precision of 1mm (decimal places 8, https://en.wikipedia.org/wiki/Decimal_degrees)
-    # It allows to round the geometry as we've seen some tiffs geometry being slightly off by less than 1mm,
-    # due to rounding issue in their creation process (before delivery).
-    # If we don't apply this rounding, we could get a very small gap between tiffs
-    # which would result in a capture area not being a single polygon.
-    buffer_distance = 0.0000001
+    # Degree precision of 1m (decimal places 5, https://en.wikipedia.org/wiki/Decimal_degrees)
+    # This number is multiplied by the `gsd`
+    buffer_distance = 0.00001 * gsd
     merged_polygons = merge_polygons(polygons, buffer_distance)
 
     return {"geometry": json.loads(to_geojson(merged_polygons)), "type": "Feature", "properties": {}}
