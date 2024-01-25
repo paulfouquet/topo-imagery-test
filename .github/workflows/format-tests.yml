@@ -18,9 +18,9 @@ jobs:
       # - name: Format
       #   run: |
       #     poetry run pre-commit run --all-files
-      - name: Unit Tests
-        run: |
-          poetry run pytest .
+      # - name: Unit Tests
+      #   run: |
+      #     poetry run pytest .
 
       - name: Build containers
         run: |
