@@ -2,8 +2,9 @@ import argparse
 import json
 import os
 import sys
-from typing import List
+from typing import Any, Dict, List
 
+import ulid
 from linz_logger import get_log
 
 from scripts.cli.cli_helper import InputParameterError, format_date, is_argo, load_input_files, valid_date
@@ -14,7 +15,23 @@ from scripts.stac.imagery.create_stac import create_item
 from scripts.standardising import run_standardising
 
 
+def save_non_visual_qa_report(errors: Dict[str, Dict[str, Any]], path: str) -> None:
+    """Save the Non Visual QA errors in a JSON file.
+
+    Args:
+        errors: Non Visual QA errors per output TIFF
+        path: where to create the JSON file
+    """
+    write(
+        os.path.join(path, f"non_visual_qa-{ulid.ULID()}.json"),
+        json.dumps(errors).encode("utf-8"),
+        content_type=ContentType.JSON.value,
+    )
+
+
 def main() -> None:
+    # FIXME: this `main()` should be refactored in several smaller method
+    # pylint: disable-msg=too-many-statements
     # pylint: disable-msg=too-many-locals
     parser = argparse.ArgumentParser()
     parser.add_argument("--preset", dest="preset", required=True, help="Standardised file format. Example: webp")
@@ -68,7 +85,7 @@ def main() -> None:
 
     # SRS needed for FileCheck (non visual QA)
     srs = get_srs()
-
+    non_visual_qa_report = {}
     for file in tiff_files:
         stac_item_path = file.get_path_standardised().rsplit(".", 1)[0] + SUFFIX_JSON
         if not exists(stac_item_path):
@@ -95,6 +112,10 @@ def main() -> None:
                     for path in original_path:
                         original_s3_path.append(get_vfs_path(path))
                     original_path = original_s3_path
+                non_visual_qa_report[file.get_path_standardised()] = {
+                    "originalPaths": ",".join(original_path),
+                    "errors": file.get_errors(),
+                }
                 get_log().info(
                     "non_visual_qa_errors",
                     originalPath=",".join(original_path),
@@ -103,6 +124,9 @@ def main() -> None:
                 )
             else:
                 get_log().info("non_visual_qa_passed", path=file.get_path_standardised())
+
+            if non_visual_qa_report:
+                save_non_visual_qa_report(non_visual_qa_report, arguments.target)
 
             # Create STAC and save in target
             item = create_item(
