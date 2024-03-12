@@ -327,6 +327,9 @@ class FileTiff:
             self.check_no_data(gdalinfo)
             self.check_band_count(gdalinfo)
             self.check_color_interpretation(gdalinfo)
+            # TODO remove mock
+            self.add_error(error_type=FileTiffErrorType.COLOR, error_message="TEST")
+            self.add_error(error_type=FileTiffErrorType.BANDS, error_message="test")
 
             gdalsrsinfo_tif_command = ["gdalsrsinfo", "-o", "wkt"]
             try:
