@@ -37,4 +37,4 @@ ENV GTIFF_SRS_SOURCE="EPSG"
 
 WORKDIR /app/scripts
 
-ENTRYPOINT ["./docker-entrypoint.sh"]
+ENTRYPOINT ["/app/scripts/docker-entrypoint.sh"]
